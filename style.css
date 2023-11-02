@@ -1,0 +1,24 @@
+
+
+body{
+    background-color: blueviolet;
+    border: inset 20px;
+    border-color: hotpink;
+   padding: 230px;
+    margin: 50px;
+    margin-top: 100px;
+   
+    
+}
+h1{
+    text-align: center;
+    
+    
+}
+p{
+    text-align: center;
+    font-size: larger;
+}
+h3{
+    text-align: center;
+}
