@@ -2,14 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="Random number guessing game" content="Random number guessing game" />
+    <meta
+      name="Random number guessing game"
+      content="Random number guessing game"
+    />
     <title>Random number guessing game</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="index.js"></script>
   </head>
   <body>
     <h1>Welcome to the random number guessing game</h1>
-    <p>refresh the page to start the game</p>
-    <h3>enjoy:></h3>
+    <div class="theGuess" id="theGuess"></div>
+    <div class="number" id="number">0</div>
+    <div class="btns">
+      <button class="button" id="decreaseButton" disabled>-</button>
+      <button class="button" id="addButton">+</button>
+    </div>
+    <button class="submit" id="submit">Submit</button>
+    <div class="manual">
+      <h2>the manual</h2>
+      <p>
+        You have three chances to guess the secret number between 0 and 10. To
+        start playing you just have to pick a number by using the increase and
+        decrease buttons and then submit your answer by clicking submit.
+      </p>
+      <p style="margin-top: -15px">"refresh to restart"</p>
+    </div>
+    <script src="index.js"></script>
   </body>
 </html>

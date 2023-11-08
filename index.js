@@ -1,45 +1,60 @@
-// Generate a random number between 0 and 50
-const randomNumber = Math.floor(Math.random() * 51);
+const randomNumber = Math.floor(Math.random() * 10);
 
-// Number of attempts the player has
-let attempts = 5;
-
-while (attempts > 0) {
-  // Ask the player to guess the number
-  let guess = prompt(
-    `Guess a number between 0 and 50. You have ${attempts} attempts left.`
-  );
-
-  // Check if the input is valid
-  if (guess === null) {
-    break;
+("use strict");
+let counter = 0;
+function add() {
+  counter += 1;
+  renderCounter();
+  if (counter >= 10) {
+    let addEl = document.querySelector("#addButton");
+    addEl.disabled = true;
   }
-
-  guess = parseInt(guess);
-
-  // Check if the input is a valid number
-  if (isNaN(guess) || guess < 0 || guess > 50) {
-    alert("oops, Invalid guess. Please enter a number between 0 and 50.");
-    continue;
+  if (counter > 0) {
+    let decreaseEl = document.querySelector("#decreaseButton");
+    decreaseEl.disabled = false;
   }
+}
+function decrease() {
+  counter -= 1;
+  renderCounter();
+  if (counter < 10) {
+    let addEl = document.querySelector("#addButton");
+    addEl.disabled = false;
+  }
+  if (counter <= 0) {
+    let decreaseEl = document.querySelector("#decreaseButton");
+    decreaseEl.disabled = true;
+  }
+}
+function renderCounter() {
+  let numberEl = document.querySelector("#number");
+  numberEl.innerHTML = counter;
+}
+let addEl = document.querySelector("#addButton");
+addEl.addEventListener("click", add);
 
-  // Decrease the number of attempts
+let decreaseEl = document.querySelector("#decreaseButton");
+decreaseEl.addEventListener("click", decrease);
+
+let guessEl = document.querySelector("#theGuess");
+
+let attempts = 3;
+
+function submit() {
   attempts--;
-
-  // Check if the guess is correct
-  if (guess === randomNumber) {
-    alert(`well done! You guessed the number ${randomNumber} correctly.`);
-    break;
-  } else if (guess < randomNumber) {
-    alert("uh oh, Too low! Try again.");
+  if (attempts == 0) {
+    guessEl.innerHTML =
+      ` uh oh you have ran out of attempts. the number was ${randomNumber}`;
+    return;
+  }
+  if (counter === randomNumber) {
+    guessEl.innerHTML = `well done! You guessed the number ${randomNumber} correctly.`;
+  } else if (counter < randomNumber) {
+    guessEl.innerHTML = "uh oh, Too low! Try again.";
   } else {
-    alert("uh oh, Too high! Try again.");
+    guessEl.innerHTML = "uh oh, Too high! Try again.";
   }
 }
 
-// If the player runs out of attempts
-if (attempts === 0) {
-  alert(
-    `Sorry, you've run out of attempts. The correct number was ${randomNumber}.`
-  );
-}
+let submitEl = document.querySelector("#submit");
+submitEl.addEventListener("click", submit);
