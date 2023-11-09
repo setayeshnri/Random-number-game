@@ -1,5 +1,5 @@
 const randomNumber = Math.floor(Math.random() * 10);
-
+console.log(randomNumber);
 ("use strict");
 let counter = 0;
 function add() {
@@ -40,21 +40,39 @@ let guessEl = document.querySelector("#theGuess");
 
 let attempts = 3;
 
+let submitEl = document.querySelector("#submit");
+
 function submit() {
-  attempts--;
-  if (attempts == 0) {
-    guessEl.innerHTML =
-      ` uh oh you have ran out of attempts. the number was ${randomNumber}`;
-    return;
-  }
   if (counter === randomNumber) {
     guessEl.innerHTML = `well done! You guessed the number ${randomNumber} correctly.`;
+    showSucessIcon();
+    submitEl.disabled= true;
+
+    return;
   } else if (counter < randomNumber) {
     guessEl.innerHTML = "uh oh, Too low! Try again.";
+    showFailIcon();
   } else {
     guessEl.innerHTML = "uh oh, Too high! Try again.";
+    showFailIcon();
+  }
+  attempts--;
+  if (attempts == 0) {
+    guessEl.innerHTML = ` uh oh you have ran out of attempts. the number was ${randomNumber}`;
+    submitEl.disabled = true;
+    
   }
 }
 
-let submitEl = document.querySelector("#submit");
+
 submitEl.addEventListener("click", submit);
+
+let iconEl = document.querySelector(".icon");
+
+function showSucessIcon() {
+  iconEl.innerHTML = "🎉";
+}
+function showFailIcon() {
+  iconEl.innerHTML = "❌";
+}
+
